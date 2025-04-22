@@ -64,6 +64,103 @@ Esta API en Node.js permite consultar el clima actual y el pronóstico de varias
 }
 ```
 
+## Ejemplos de uso con Postman
+
+### Listar ciudades
+- Método: GET
+- URL: http://localhost:3000/ciudades
+
+### Agregar una ciudad
+- Método: POST
+- URL: http://localhost:3000/ciudades
+- Body (JSON):
+```json
+{
+  "nombre": "Paris",
+  "lat": 48.8566,
+  "lon": 2.3522
+}
+```
+
+### Actualizar una ciudad
+- Método: PUT
+- URL: http://localhost:3000/ciudades/Paris
+- Body (JSON):
+```json
+{
+  "lat": 48.85,
+  "lon": 2.35
+}
+```
+
+### Eliminar una ciudad
+- Método: DELETE
+- URL: http://localhost:3000/ciudades/Paris
+
+### Clima completo de una ciudad
+- Método: GET
+- URL: http://localhost:3000/clima/Madrid
+
+### Clima de una ciudad mostrando un único parámetro
+- Método: GET
+- URL: http://localhost:3000/clima/Madrid/parametro/temp
+
+### Pronóstico de una ciudad a 4 días
+- Método: GET
+- URL: http://localhost:3000/clima/Madrid/pronostico/4
+
+### Pronóstico de una ciudad a 16 días
+- Método: GET
+- URL: http://localhost:3000/clima/Madrid/pronostico/16
+
+---
+
+## Ejemplos de uso con Curl
+
+### Listar ciudades
+```bash
+curl http://localhost:3000/ciudades
+```
+
+### Agregar una ciudad
+```bash
+curl -X POST http://localhost:3000/ciudades \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Paris","lat":48.8566,"lon":2.3522}'
+```
+
+### Actualizar una ciudad
+```bash
+curl -X PUT http://localhost:3000/ciudades/Paris \
+  -H "Content-Type: application/json" \
+  -d '{"lat":48.85,"lon":2.35}'
+```
+
+### Eliminar una ciudad
+```bash
+curl -X DELETE http://localhost:3000/ciudades/Paris
+```
+
+### Clima completo de una ciudad
+```bash
+curl http://localhost:3000/clima/Madrid
+```
+
+### Clima de una ciudad mostrando un único parámetro
+```bash
+curl http://localhost:3000/clima/Madrid/parametro/temp
+```
+
+### Pronóstico de una ciudad a 4 días
+```bash
+curl http://localhost:3000/clima/Madrid/pronostico/4
+```
+
+### Pronóstico de una ciudad a 16 días
+```bash
+curl http://localhost:3000/clima/Madrid/pronostico/16
+```
+
 ## Autor
 - Proyecto de ejemplo para curso Node.js
 - Desarrollado por Alexasto
