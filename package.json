@@ -1,0 +1,17 @@
+{
+  "name": "api-clima-ciudades",
+  "version": "1.0.0",
+  "description": "API Node.js para consultar el clima de ciudades usando OpenWeatherMap y gestionar ciudades en memoria.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["clima", "api", "nodejs", "express", "openweathermap"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
