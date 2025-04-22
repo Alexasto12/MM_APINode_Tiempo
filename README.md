@@ -1,61 +1,89 @@
-# API de Clima de Ciudades
+# 🌤️ API de Clima de Ciudades
 
-Esta API en Node.js permite consultar el clima actual y el pronóstico de varias ciudades del mundo usando la API de OpenWeatherMap. Además, puedes gestionar (CRUD) la lista de ciudades en memoria.
+Esta API en **Node.js** permite consultar el clima actual y el pronóstico de varias ciudades del mundo usando **OpenWeatherMap**. También puedes gestionar (CRUD) la lista de ciudades en memoria.
 
-## Instalación
+---
+
+## 🚀 Instalación
 
 1. Clona el repositorio o descarga los archivos.
 2. Instala las dependencias:
+
    ```bash
    npm install
    ```
-3. Copia el archivo `.env.example` a `.env` y coloca tu API key de OpenWeatherMap:
+
+3. Copia el archivo de entorno y agrega tu API Key de OpenWeatherMap:
+
    ```bash
    cp .env.example .env
-   # Edita .env y reemplaza tu_api_key_aqui por tu clave real
+   # Edita .env y reemplaza "tu_api_key_aqui" con tu clave real
    ```
+
 4. Inicia el servidor:
+
    ```bash
    npm start
    ```
 
-## Endpoints
+---
 
-### CRUD de Ciudades
+## 📡 Endpoints
 
-- **GET /ciudades**
-  - Lista todas las ciudades almacenadas.
+### 🏙️ CRUD de Ciudades
 
-- **POST /ciudades**
-  - Agrega una ciudad.
-  - Body JSON: `{ "nombre": "Ciudad", "lat": 0.0, "lon": 0.0 }`
+| Método | Endpoint               | Descripción                                  |
+|--------|------------------------|----------------------------------------------|
+| GET    | `/ciudades`            | Lista todas las ciudades almacenadas.        |
+| POST   | `/ciudades`            | Agrega una ciudad.                           |
+| PUT    | `/ciudades/:nombre`    | Actualiza latitud/longitud de una ciudad.    |
+| DELETE | `/ciudades/:nombre`    | Elimina una ciudad por nombre.               |
 
-- **PUT /ciudades/:nombre**
-  - Actualiza latitud/longitud de una ciudad.
-  - Body JSON: `{ "lat": 0.0, "lon": 0.0 }`
+**Ejemplo Body JSON para POST**:
 
-- **DELETE /ciudades/:nombre**
-  - Elimina una ciudad por nombre.
+```json
+{
+  "nombre": "Ciudad",
+  "lat": 0.0,
+  "lon": 0.0
+}
+```
 
-### Clima
+**Ejemplo Body JSON para PUT**:
 
-- **GET /clima/:nombre**
-  - Devuelve el clima completo de la ciudad indicada.
+```json
+{
+  "lat": 0.0,
+  "lon": 0.0
+}
+```
 
-- **GET /clima/:nombre/parametro/:parametro**
-  - Devuelve solo un parámetro del clima (ej: temperatura, humedad, etc).
-  - Ejemplo: `/clima/Madrid/parametro/temp`
+---
 
-- **GET /clima/:nombre/pronostico/:dias**
-  - Devuelve el pronóstico de la ciudad para 4 o 16 días.
-  - Ejemplo: `/clima/Madrid/pronostico/4`
+### 🌦️ Clima
 
-## Notas
-- Todas las respuestas están en formato JSON.
-- Las ciudades se almacenan en memoria (no se usa base de datos).
-- Para el pronóstico de 16 días, se requiere un plan pago de OpenWeatherMap.
+| Método | Endpoint                                      | Descripción                                                    |
+|--------|-----------------------------------------------|----------------------------------------------------------------|
+| GET    | `/clima/:nombre`                              | Devuelve el clima completo de la ciudad indicada.              |
+| GET    | `/clima/:nombre/parametro/:parametro`         | Devuelve un parámetro del clima (ej: `temp`, `humidity`).     |
+| GET    | `/clima/:nombre/pronostico/:dias`             | Devuelve el pronóstico de la ciudad (4 o 16 días).             |
 
-## Ejemplo de ciudad
+**Ejemplos:**
+- `/clima/Madrid/parametro/temp`
+- `/clima/Madrid/pronostico/4`
+
+---
+
+## 📝 Notas
+
+- Todas las respuestas están en formato **JSON**.
+- Las ciudades se almacenan en **memoria** (no hay base de datos).
+- El pronóstico de **16 días** requiere un plan **de pago** de OpenWeatherMap.
+
+---
+
+## 🧪 Ejemplo de Ciudad
+
 ```json
 {
   "nombre": "Madrid",
@@ -64,103 +92,110 @@ Esta API en Node.js permite consultar el clima actual y el pronóstico de varias
 }
 ```
 
-## Ejemplos de uso con Postman
+---
 
-### Listar ciudades
-- Método: GET
-- URL: http://localhost:3000/ciudades
+## 🧰 Ejemplos de uso
 
-### Agregar una ciudad
-- Método: POST
-- URL: http://localhost:3000/ciudades
-- Body (JSON):
-```json
-{
-  "nombre": "Paris",
-  "lat": 48.8566,
-  "lon": 2.3522
-}
-```
+### 📬 Con Postman
 
-### Actualizar una ciudad
-- Método: PUT
-- URL: http://localhost:3000/ciudades/Paris
-- Body (JSON):
-```json
-{
-  "lat": 48.85,
-  "lon": 2.35
-}
-```
+#### ✅ Listar ciudades
+- **Método:** GET  
+- **URL:** `http://localhost:3000/ciudades`
 
-### Eliminar una ciudad
-- Método: DELETE
-- URL: http://localhost:3000/ciudades/Paris
+#### ➕ Agregar una ciudad
+- **Método:** POST  
+- **URL:** `http://localhost:3000/ciudades`  
+- **Body (JSON):**
+  ```json
+  {
+    "nombre": "Paris",
+    "lat": 48.8566,
+    "lon": 2.3522
+  }
+  ```
 
-### Clima completo de una ciudad
-- Método: GET
-- URL: http://localhost:3000/clima/Madrid
+#### 🔄 Actualizar una ciudad
+- **Método:** PUT  
+- **URL:** `http://localhost:3000/ciudades/Paris`  
+- **Body (JSON):**
+  ```json
+  {
+    "lat": 48.85,
+    "lon": 2.35
+  }
+  ```
 
-### Clima de una ciudad mostrando un único parámetro
-- Método: GET
-- URL: http://localhost:3000/clima/Madrid/parametro/temp
+#### ❌ Eliminar una ciudad
+- **Método:** DELETE  
+- **URL:** `http://localhost:3000/ciudades/Paris`
 
-### Pronóstico de una ciudad a 4 días
-- Método: GET
-- URL: http://localhost:3000/clima/Madrid/pronostico/4
+#### 🌍 Clima completo
+- **Método:** GET  
+- **URL:** `http://localhost:3000/clima/Madrid`
 
-### Pronóstico de una ciudad a 16 días
-- Método: GET
-- URL: http://localhost:3000/clima/Madrid/pronostico/16
+#### 🌡️ Clima (parámetro único)
+- **Método:** GET  
+- **URL:** `http://localhost:3000/clima/Madrid/parametro/temp`
+
+#### 📅 Pronóstico a 4 días
+- **Método:** GET  
+- **URL:** `http://localhost:3000/clima/Madrid/pronostico/4`
+
+#### 📅 Pronóstico a 16 días
+- **Método:** GET  
+- **URL:** `http://localhost:3000/clima/Madrid/pronostico/16`
 
 ---
 
-## Ejemplos de uso con Curl
+### 🧪 Con cURL
 
-### Listar ciudades
+#### ✅ Listar ciudades
 ```bash
 curl http://localhost:3000/ciudades
 ```
 
-### Agregar una ciudad
+#### ➕ Agregar una ciudad
 ```bash
 curl -X POST http://localhost:3000/ciudades \
   -H "Content-Type: application/json" \
   -d '{"nombre":"Paris","lat":48.8566,"lon":2.3522}'
 ```
 
-### Actualizar una ciudad
+#### 🔄 Actualizar una ciudad
 ```bash
 curl -X PUT http://localhost:3000/ciudades/Paris \
   -H "Content-Type: application/json" \
   -d '{"lat":48.85,"lon":2.35}'
 ```
 
-### Eliminar una ciudad
+#### ❌ Eliminar una ciudad
 ```bash
 curl -X DELETE http://localhost:3000/ciudades/Paris
 ```
 
-### Clima completo de una ciudad
+#### 🌍 Clima completo
 ```bash
 curl http://localhost:3000/clima/Madrid
 ```
 
-### Clima de una ciudad mostrando un único parámetro
+#### 🌡️ Clima (parámetro único)
 ```bash
 curl http://localhost:3000/clima/Madrid/parametro/temp
 ```
 
-### Pronóstico de una ciudad a 4 días
+#### 📅 Pronóstico a 4 días
 ```bash
 curl http://localhost:3000/clima/Madrid/pronostico/4
 ```
 
-### Pronóstico de una ciudad a 16 días
+#### 📅 Pronóstico a 16 días
 ```bash
 curl http://localhost:3000/clima/Madrid/pronostico/16
 ```
 
-## Autor
-- Proyecto de ejemplo para curso Node.js
-- Desarrollado por Alexasto
+---
+
+## 👤 Autor
+
+- Proyecto de ejemplo para curso de **Node.js**
+- Desarrollado por **Alexasto12**
